@@ -6,8 +6,9 @@ Android Astrid task extractor to be used with the Android app Tasker
 Prereqs
 =======
 
-Tasker
-Astrid
+Tasker (http://tasker.dinglisch.net)
+Astrid (http://astrid.com)
+SL4A (http://tasker.wikidot.com/sl4a)
 
 Howto
 =====
@@ -28,4 +29,6 @@ TODO
 - Support multiple filters
 - Support filter on prio (use arrays/hashes?)
 - Use script with scene on top of lockscreen
+- Python seems to default to Ascii, scripts should use UTF-8 instead to be able to parse all data 
+  (script outputs remoteID when it fails to parse task names.)
 - general cleanup
