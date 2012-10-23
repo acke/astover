@@ -9,6 +9,8 @@ Prereqs
 Tasker
 Astrid
 
+Howto
+=====
 
 Use in tasks -> Select Action Category -> Scripts -> Run SL4A Scripts
 
@@ -17,3 +19,13 @@ Use in tasks -> Select Action Category -> Scripts -> Run SL4A Scripts
 3. Run a task to get the values (they are availible in the %Clipboard Contents)
 	I use Zoom element Text.
 	But this works as well with popups or other elements.
+
+
+TODO
+====
+
+- Add active profiles as inparam to astextract.py
+- Support multiple filters
+- Support filter on prio
+- Use script with scene on top of lockscreen
+- general cleanup
