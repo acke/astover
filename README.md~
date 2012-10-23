@@ -26,6 +26,6 @@ TODO
 
 - Add active profiles as inparam to astextract.py
 - Support multiple filters
-- Support filter on prio
+- Support filter on prio (use arrays/hashes?)
 - Use script with scene on top of lockscreen
 - general cleanup
