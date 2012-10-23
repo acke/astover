@@ -6,9 +6,9 @@ Android Astrid task extractor to be used with the Android app Tasker
 Prereqs
 =======
 
-Tasker (http://tasker.dinglisch.net)
-Astrid (http://astrid.com)
-SL4A (http://tasker.wikidot.com/sl4a)
+- Tasker (http://tasker.dinglisch.net)
+- Astrid (http://astrid.com)
+- SL4A (http://tasker.wikidot.com/sl4a)
 
 
 Howto
