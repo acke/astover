@@ -14,7 +14,7 @@ import astover
 def ast_extract(droid, filter):
  
   if (filter == ""):
-    filter = 'Work'
+    filter = 'Home'
 
   print 'Extract relevant data from Astrid backup xml.'
   
