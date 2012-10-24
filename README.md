@@ -31,5 +31,6 @@ TODO
 - Support filter on prio (use arrays/hashes?)
 - Use script with scene on top of lockscreen
 - Python seems to default to Ascii, scripts should use UTF-8 instead to be able to parse all data 
-  (script outputs remoteID when it fails to parse task names.)
+  (script outputs remoteID when it fails to parse task names.) DONE
+- Convert Epoch dates to human readable datetime. DONE
 - general cleanup
