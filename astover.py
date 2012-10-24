@@ -30,7 +30,7 @@ def extract_value(dom, filter, returnString):
     if t.attributes['value'].value == filter:
       try:
         print dom.attributes['title'].value
-        returnString += dom.attributes['title'].value
+        returnString += dom.attributes['title'].value.encode('utf-8')
         returnString += ' '
         returnString += dom.attributes['dueDate'].value
         returnString += '\n'
@@ -51,8 +51,9 @@ def fetch_tasks(filter):
   print len(itemlist)
 
   for s in itemlist :
-     
-    if s.attributes['completed'].value == '0':
+    notCompleted = s.attributes['completed'].value == '0'
+ 
+    if notCompleted:
       returnString = extract_value (s, filter, returnString)
 
   xmldoc.unlink()
