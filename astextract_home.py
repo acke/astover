@@ -18,7 +18,11 @@ def ast_extract(droid, filter):
 
   print 'Extract relevant data from Astrid backup xml.'
   
-  result = astover.fetch_tasks(filter)
+  if (filter == "ste"):
+    result = astover.fetch_tasks(filter, False)
+  else:
+    result = astover.fetch_tasks(filter, True)
+
   """droid.notify('Astrid tasks extracted ', result)"""
   droid.setClipboard(result)
 """  droid.makeToast(result)"""

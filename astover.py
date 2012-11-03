@@ -31,11 +31,10 @@ def get_time(epoch):
   print time.strftime('%Y-%m-%d %H:%M',  time.gmtime(myTime/1000))
   return time.strftime('%Y-%m-%d %H:%M',  time.gmtime(myTime/1000))
 
+def matching_filter_has_date(dom, metaitem, filter, returnString):
 
-def extract_value(dom, filter, returnString):
-  metaitem = dom.getElementsByTagName('metadata')
   """replace returnString with array containing more information"""
-  
+
   for t in metaitem :
 
     if t.attributes['value'].value == filter and not dom.attributes['dueDate'].value == "0":
@@ -53,8 +52,27 @@ def extract_value(dom, filter, returnString):
 
   return returnString
 
+def matching_filter(dom, metaitem, filter, returnString):
+  """replace returnString with array containing more information"""
 
-def fetch_tasks(filter):
+  for t in metaitem :
+
+    if t.attributes['value'].value == filter:
+      try:
+        print dom.attributes['title'].value.encode('utf-8')
+        returnString += dom.attributes['title'].value.encode('utf-8')
+        returnString += ' '
+        returnString += get_time(dom.attributes['dueDate'].value)
+        returnString += '\n'
+      except ValueError:
+        print "Oops!  That was no ascii string. remoteId: " + dom.attributes['remoteId'].value
+        returnString += 'remoteId= '
+        returnString += dom.attributes['remoteId'].value
+        returnString += '\n'
+
+  return returnString
+
+def fetch_tasks(filter, showAll):
   
   returnString = file_URL + '\n'
   xmldoc = minidom.parse(file_URL)
@@ -63,13 +81,14 @@ def fetch_tasks(filter):
 
   for s in itemlist :
     notCompleted = s.attributes['completed'].value == '0'
+    metaitem = s.getElementsByTagName('metadata')
  
-    if notCompleted:
-      returnString = extract_value (s, filter, returnString)
+    if notCompleted and showAll:
+      returnString = matching_filter (s, metaitem, filter, returnString)
+    elif notCompleted:
+      returnString = matching_filter_has_date (s, metaitem, filter, returnString) 
 
   xmldoc.unlink()
-
-  get_time(1348121757000)
 
   return returnString
 
