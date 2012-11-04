@@ -31,6 +31,34 @@ def get_time(epoch):
   print time.strftime('%Y-%m-%d %H:%M',  time.gmtime(myTime/1000))
   return time.strftime('%Y-%m-%d %H:%M',  time.gmtime(myTime/1000))
 
+def addnewline (returnString)
+    
+  return returnString += '\n'
+
+def extractDueDate (returnString, dom)
+  try:
+    returnString += ' '
+    returnString += get_time(dom.attributes['dueDate'].value)
+  except ValueError:
+    print "Oops!  That was no ascii string. remoteId: " + dom.attributes['remoteId'].value
+    returnString += 'remoteId= '
+    returnString += dom.attributes['remoteId'].value
+    returnString += '\n'
+   
+  return returnString
+
+def extractTitle (returnString, dom)
+  try:
+    print dom.attributes['title'].value.encode('utf-8')
+    returnString += dom.attributes['title'].value.encode('utf-8')
+  except ValueError:
+    print "Oops!  That was no ascii string. remoteId: " + dom.attributes['remoteId'].value
+    returnString += 'remoteId= '
+    returnString += dom.attributes['remoteId'].value
+    returnString += '\n'
+   
+  return returnString
+
 def matching_filter_has_date(dom, metaitem, filter, returnString):
 
   """replace returnString with array containing more information"""
@@ -38,17 +66,9 @@ def matching_filter_has_date(dom, metaitem, filter, returnString):
   for t in metaitem :
 
     if t.attributes['value'].value == filter and not dom.attributes['dueDate'].value == "0":
-      try:
-        print dom.attributes['title'].value.encode('utf-8')
-        returnString += dom.attributes['title'].value.encode('utf-8')
-        returnString += ' '
-        returnString += get_time(dom.attributes['dueDate'].value)
-        returnString += '\n'
-      except ValueError:
-        print "Oops!  That was no ascii string. remoteId: " + dom.attributes['remoteId'].value
-        returnString += 'remoteId= '
-        returnString += dom.attributes['remoteId'].value
-        returnString += '\n'
+      returnString = extractTitle (returnString, dom)
+      returnString = extractDueDate (returnString, dom)
+      returnString = extractTitle (returnString)
 
   return returnString
 
@@ -58,17 +78,9 @@ def matching_filter(dom, metaitem, filter, returnString):
   for t in metaitem :
 
     if t.attributes['value'].value == filter:
-      try:
-        print dom.attributes['title'].value.encode('utf-8')
-        returnString += dom.attributes['title'].value.encode('utf-8')
-        returnString += ' '
-        returnString += get_time(dom.attributes['dueDate'].value)
-        returnString += '\n'
-      except ValueError:
-        print "Oops!  That was no ascii string. remoteId: " + dom.attributes['remoteId'].value
-        returnString += 'remoteId= '
-        returnString += dom.attributes['remoteId'].value
-        returnString += '\n'
+      returnString = extractTitle (returnString, dom)
+      returnString = extractDueDate (returnString, dom)
+      returnString = extractTitle (returnString)
 
   return returnString
 
